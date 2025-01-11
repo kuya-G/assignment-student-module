@@ -36,4 +36,9 @@ export class StudentController {
   ): Promise<Student> {
     return this.studentService.updateStudent(id, data);
   }
+
+  @Delete(':id')
+  async deleteStudent(@Param('id') id: number): Promise<void> {
+    return this.studentService.deleteStudent(id);
+  }
 }
