@@ -14,4 +14,16 @@ export class StudentService {
         const student = this.studentRepository.create(date);
         return this.studentRepository.save(student);
     }
+
+    async getStudents(): Promise<Student[]> {
+        return this.studentRepository.find();
+    }
+
+    async getStudentById(id: number): Promise<Student> {
+        const student = await this.studentRepository.findOneBy({ id });
+        if (!student) {
+          throw new NotFoundException(`Student with ID ${id} not found`);
+        }
+        return student;
+      }
 }
